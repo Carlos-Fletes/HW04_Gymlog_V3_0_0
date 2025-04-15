@@ -8,12 +8,108 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/logDisplayTextView"
+        android:layout_width="390dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dip"
+        android:padding="8dp"
         android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/exerciseLabelTextView"
+        android:layout_width="139dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/exercise"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/logDisplayTextView"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/logDisplayTextView" />
+
+    <EditText
+        android:id="@+id/exerciseInputEditText"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:autofillHints=""
+        android:hint="@string/enter_exercise"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBaseline_toBaselineOf="@+id/exerciseLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/exerciseLabelTextView"
+        tools:ignore="VisualLintBounds" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dip"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:text="@string/weight"
+        android:id="@+id/weightLabelTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseLabelTextView"
+
+        />
+
+    <EditText
+        android:id="@+id/weightInputEditText"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+
+        android:autofillHints=""
+        android:hint="@string/enter_a_weight"
+        android:inputType="number|numberDecimal"
+        android:padding="8dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBaseline_toBaselineOf="@+id/weightLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/weightLabelTextView" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dip"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:text="@string/reps"
+        android:id="@+id/repLabelTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightLabelTextView"
+
+        />
+
+    <EditText
+        android:id="@+id/repInputEditText"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+
+        android:autofillHints=""
+        android:hint="@string/enter_reps"
+        android:inputType="number"
+        android:padding="8dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBaseline_toBaselineOf="@+id/repLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/repLabelTextView" />
+<Button
+    android:layout_width="300dp"
+    android:layout_height="205dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/repInputEditText"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="16dp"
+    android:text="@string/log"
+    android:textSize="36sp"
+    android:id="@+id/logButton"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
