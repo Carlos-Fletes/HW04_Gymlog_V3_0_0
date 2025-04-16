@@ -2,9 +2,11 @@ package com.example.hw04_gymlog_v300.database;
 
 import android.app.Application;
 import android.util.Log;
+import android.view.animation.ScaleAnimation;
 
 import com.example.hw04_gymlog_v300.database.entities.GymLog;
 import com.example.hw04_gymlog_v300.MainActivity;
+import com.example.hw04_gymlog_v300.database.entities.User;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -12,7 +14,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class GymLogRepository {
-    private GymLogDAO gymLogDAO;
+    private final GymLogDAO gymLogDAO;
+
+    private final UserDAO userDAO;
     private ArrayList<GymLog> allLogs;
 
     private static GymLogRepository repository;
@@ -20,6 +24,7 @@ public class GymLogRepository {
     private GymLogRepository(Application application){
         GymLogDatabase db = GymLogDatabase.getDatabase(application);
         this.gymLogDAO = db.gymLogDAO();
+        this.userDAO = db.userDAO();
         this.allLogs = (ArrayList<GymLog>) this.gymLogDAO.getAllRecords();
     }
 
@@ -54,6 +59,7 @@ public class GymLogRepository {
                 }
         );
         try{
+
             return future.get();
         }catch(InterruptedException | ExecutionException e){
             Log.i(MainActivity.TAG, "Problem when getting all the GymLogs in the repository");
@@ -67,4 +73,27 @@ public class GymLogRepository {
         });
     }
 
+    public void insertUser(User... user){
+        GymLogDatabase.databaseWriteExecutor.execute(()->{
+            userDAO.insert(user);
+        });
+    }
+
+    public User getUserByUserName(String username) {
+        Future<User> future = GymLogDatabase.databaseWriteExecutor.submit(
+                new Callable<User>() {
+                            @Override
+                            public User call() throws Exception{
+                                return userDAO.getUserByUserName(username);
+                            }
+
+                });
+        try{
+            return future.get();
+        }catch(InterruptedException|ExecutionException e)
+        {
+            Log.i(MainActivity.TAG, "Problem when getting user by username");
+        }
+        return null;
+    }//commit
 }
